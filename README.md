@@ -40,30 +40,37 @@ Some of the commands have --verbose switch which will print out the commands it 
 This will create `.secrets` file with project configuration. The command will ask you all it needs to know if you do not
 supply the config through options.
 
+These configs need to be set:
+
+    `secrets_file` - file where your secrets are kept. `config/application.yml` for figaro, `.env` for dotenv or something else.
+    `secrets_repo` - vault 'repo' where your secrets will be kept. Example: `rails/secrets/`
+    `secrets_field` - a field in vault repo where the contents of secrets_file will be written. Example: `secrets`
+
 ### Auth
 
     $ secrets auth
 
 You need to first authenticate yourself on vault server to be able to read and write.
-Needs to be done only once for token.
+Needs to be done only _once_ for token.
 
 ### Read
 
     $ secrets read
 
-This will only read from vault.
+This will only read from vault repo + environment. Environment can be set by --environment option, `RAILS_ENV` variable.
+Default is `development` if nothing is set. Example: `rails/secrets/environment`
 
 ### Pull
 
     $ secrets pull
 
-This will pull from vault and write to your secrets file.
+This will pull from vault and write to your secrets file. For environment see `Read`
 
 ### Push
 
     $ secrets push
 
-This will push from your secrets file to vault.
+This will push from your secrets file to vault. For environment see `Read`
 
 ## Development
 
