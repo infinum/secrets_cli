@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/secrets_cli.svg)](https://badge.fury.io/rb/secrets_cli)
+
 # SecretsCli
 
 This is a CLI for easier use of [vault](https://www.vaultproject.io/)
