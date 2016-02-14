@@ -28,10 +28,12 @@ Following environemt variables need to be set:
     SECRETS_VAULT_AUTH_METHOD - this is auth method ('github' or 'token' supported for now)
     SECRETS_VAULT_AUTH_TOKEN - this is vault auth token
 
+For github token you only need `read:org` permissions.
+
 ## Usage
 
-All commands have --help with detailed descriptions of options.
-Some of the commands have --verbose switch which will print out the commands it run.
+All commands have `--help` with detailed descriptions of options.
+Some of the commands have `--verbose` switch which will print out the commands it run.
 
 ### Init
 
@@ -57,7 +59,7 @@ Needs to be done only _once_ for token.
 
     $ secrets read
 
-This will only read from vault repo + environment. Environment can be set by --environment option, `RAILS_ENV` variable.
+This will only read from vault repo + environment. Environment can be set by `--environment` option, `RAILS_ENV` variable.
 Default is `development` if nothing is set. Example: `rails/secrets/environment`
 
 ### Pull
