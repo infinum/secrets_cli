@@ -18,7 +18,7 @@ require 'secrets_cli/vault/pull'
 require 'secrets_cli/vault/push'
 require 'secrets_cli/version'
 
-require 'pry'
+# require 'pry'
 
 module SecretsCli
   SECRETS_CONFIG_FILE = '.secrets'
