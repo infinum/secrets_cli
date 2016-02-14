@@ -1,6 +1,6 @@
 # SecretsCli
 
-This is a CLI for easier use of (vault)[https://www.vaultproject.io/]
+This is a CLI for easier use of [vault](https://www.vaultproject.io/)
 
 ## Installation
 
