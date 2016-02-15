@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'pry'
 
+  spec.add_runtime_dependency 'commander'
   spec.add_runtime_dependency 'tty', '~> 0.4.0'
   spec.add_runtime_dependency 'vault-binaries'
 end
