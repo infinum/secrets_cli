@@ -24,9 +24,9 @@ Or install it yourself as:
 
 ## Prerequisites
 
-`vault` must be installed on system. This gem adds a dependancy to `vault-binaries` which will install `vault` for you.
+`vault` must be installed on system. This gem adds a dependency to `vault-binaries` which will install `vault` for you.
 
-Following environemt variables need to be set:
+The following environment variables need to be set:
 
     VAULT_ADDR - this is an address to vault server
     SECRETS_VAULT_AUTH_METHOD - this is auth method ('github' or 'token' supported for now)
