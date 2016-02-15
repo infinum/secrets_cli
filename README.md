@@ -4,6 +4,8 @@
 
 This is a CLI for easier use of [vault](https://www.vaultproject.io/)
 
+There is also a mina plugin [mina-secrets](https://github.com/infinum/mina-secrets)
+
 ## Installation
 
 Add this line to your application's Gemfile:
