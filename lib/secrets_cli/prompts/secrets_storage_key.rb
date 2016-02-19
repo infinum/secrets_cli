@@ -1,10 +1,10 @@
 module SecretsCli
   module Prompts
-    class SecretsRepo
+    class SecretsStorageKey
       include SecretsCli::Helpers
 
       def call
-        prompt.ask('What will the secrets repo be?', default: default)
+        prompt.ask('What will the secrets storage key be?', default: default)
       end
 
       private

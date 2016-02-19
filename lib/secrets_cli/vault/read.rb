@@ -3,16 +3,15 @@ module SecretsCli
     class Read < SecretsCli::Vault::Base
       def initialize(options)
         super
-        @secrets_repo = options.secrets_repo || config.secrets_repo
-        @secrets_field = options.secrets_field || config.secrets_field
+        @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
       end
 
       private
 
-      attr_reader :secrets_repo, :secrets_field
+      attr_reader :secrets_storage_key
 
       def command
-        "vault read --field=#{secrets_field} #{secrets_full_repo}"
+        "vault read --field=#{SECRETS_FIELD} #{secrets_full_storage_key}"
       end
     end
   end

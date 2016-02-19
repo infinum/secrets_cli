@@ -19,8 +19,7 @@ module SecretsCli
     def config
       {
         secrets_file: secrets_file,
-        secrets_repo: secrets_repo,
-        secrets_field: secrets_field
+        secrets_storage_key: secrets_storage_key
       }
     end
 
@@ -28,14 +27,10 @@ module SecretsCli
       @secrets_file ||= options.secrets_file || SecretsCli::Prompts::SecretsFile.new.call
     end
 
-    def secrets_repo
-      repo = options.secrets_repo || SecretsCli::Prompts::SecretsRepo.new.call
-      repo << '/' unless repo.end_with?('/')
-      repo
-    end
-
-    def secrets_field
-      options.secrets_field || SecretsCli::Prompts::SecretsField.new.call
+    def secrets_storage_key
+      storage_key = options.secrets_storage_key || SecretsCli::Prompts::SecretsStorageKey.new.call
+      storage_key << '/' unless storage_key.end_with?('/')
+      storage_key
     end
   end
 end

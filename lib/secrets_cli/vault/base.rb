@@ -15,7 +15,7 @@ module SecretsCli
           if wait_thr.value.success?
             prompt.ok(stdout_and_stderr.read)
           else
-            error!(stdout_and_stderr.read)
+            prompt.error(stdout_and_stderr.read)
           end
         end
       end
@@ -26,8 +26,8 @@ module SecretsCli
         fail NotImplementedError
       end
 
-      def secrets_full_repo
-        File.join(secrets_repo, config.environment)
+      def secrets_full_storage_key
+        File.join(secrets_storage_key, config.environment)
       end
     end
   end

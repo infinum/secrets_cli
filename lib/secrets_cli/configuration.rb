@@ -15,12 +15,8 @@ module SecretsCli
       config[:secrets_file]
     end
 
-    def secrets_repo
-      config[:secrets_repo]
-    end
-
-    def secrets_field
-      config[:secrets_field]
+    def secrets_storage_key
+      config[:secrets_storage_key]
     end
 
     def self.write(config)
