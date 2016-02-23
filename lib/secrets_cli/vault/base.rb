@@ -15,7 +15,7 @@ module SecretsCli
           if wait_thr.value.success?
             prompt.ok(stdout_and_stderr.read)
           else
-            prompt.error(stdout_and_stderr.read)
+            error(stdout_and_stderr.read)
           end
         end
       end

@@ -17,6 +17,11 @@ module SecretsCli
       exit 1
     end
 
+    def error(message)
+      prompt.error(message)
+      exit 0
+    end
+
     def print_verbose(message)
       puts pastel.cyan(message)
     end
