@@ -5,7 +5,7 @@ module SecretsCli
 
       def initialize(options)
         super
-        @auth_token = options.auth_token || ENV['_VAULT_AUTH_TOKEN']
+        @auth_token = options.auth_token || ENV['VAULT_AUTH_TOKEN']
         @auth_method = options.auth_method || ENV['VAULT_AUTH_METHOD']
       end
 
