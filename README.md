@@ -24,8 +24,6 @@ Or install it yourself as:
 
 ## Prerequisites
 
-`vault` must be installed on system. This gem adds a dependency to `vault-binaries` which will install `vault` for you.
-
 The following environment variables need to be set:
 
 For `vault` itself:
@@ -34,8 +32,10 @@ For `vault` itself:
 
 For `secrets_cli`:
 
-    VAULT_AUTH_METHOD - this is auth method ('github' or 'token' supported for now)
+    VAULT_AUTH_METHOD - this is auth method ('github', 'token' or 'app_id' supported for now)
     VAULT_AUTH_TOKEN - this is vault auth token
+    VAULT_AUTH_APP_ID - machine app_id
+    VAULT_AUTH_USER_ID - machine user_id which matches app_id
 
 For github token you only need `read:org` permissions.
 
@@ -57,12 +57,11 @@ Example of the `.secrets`:
     :secrets_file: config/application.yml   # file where your secrets are kept, depending on your environment gem (figaro, dotenv, etc)
     :secrets_storage_key: rails/my_project/ # vault 'storage_key' where your secrets will be kept.
 
-### Auth
+### Policies
 
-    $ secrets auth
+    $ secrets policies
 
-You need to first authenticate yourself on vault server to be able to read and write.
-Needs to be done only _once_ for specific token.
+To get all the policies your auth grants please use this command.
 
 ### storage_keys and environments
 
@@ -78,10 +77,6 @@ Environment is `development` by default, but it can be overwriten by passing `--
     $ secrets read
 
 This will only read from vault.
-
-Example of executed command:
-
-    vault read rails/my_project/development
 
 ### Pull
 
@@ -109,4 +104,3 @@ Bug storage_keyrts and pull requests are welcome on GitHub at https://github.com
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

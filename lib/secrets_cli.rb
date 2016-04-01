@@ -3,6 +3,7 @@ require 'tty-prompt'
 require 'tty-which'
 require 'open3'
 require 'singleton'
+require 'vault'
 require 'secrets_cli/helpers'
 require 'secrets_cli/configuration'
 require 'secrets_cli/init'
@@ -17,9 +18,9 @@ require 'secrets_cli/vault/pull'
 require 'secrets_cli/vault/push'
 require 'secrets_cli/version'
 
-# require 'pry'
+require 'pry'
 
 module SecretsCli
   SECRETS_CONFIG_FILE = '.secrets'
-  SECRETS_FIELD = 'secrets'
+  SECRETS_FIELD = :secrets
 end

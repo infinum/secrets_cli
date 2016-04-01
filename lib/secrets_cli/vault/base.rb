@@ -10,14 +10,9 @@ module SecretsCli
       end
 
       def call
-        print_verbose(command) if config.verbose
-        Open3.popen2e(command) do |_stdin, stdout_and_stderr, wait_thr|
-          if wait_thr.value.success?
-            prompt.ok(stdout_and_stderr.read)
-          else
-            error(stdout_and_stderr.read)
-          end
-        end
+        options.verbose ? prompt.ok(command) : command
+      rescue => exception
+        error!(exception.message)
       end
 
       private

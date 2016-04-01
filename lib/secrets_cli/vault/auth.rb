@@ -5,20 +5,25 @@ module SecretsCli
 
       def initialize(options)
         super
-        @auth_token = options.auth_token || ENV['VAULT_AUTH_TOKEN']
-        @auth_method = options.auth_method || ENV['VAULT_AUTH_METHOD']
+        SecretsCli::Check::Vault.new(options).call
+        @auth_method = ENV['VAULT_AUTH_METHOD']
+        @auth_token = ENV['VAULT_AUTH_TOKEN']
+        @auth_app_id = ENV['VAULT_AUTH_APP_ID']
+        @auth_user_id = ENV['VAULT_AUTH_USER_ID']
       end
 
       private
 
-      attr_reader :auth_token, :auth_method
+      attr_reader :auth_token, :auth_method, :auth_app_id, :auth_user_id
 
       def command
         case auth_method
         when 'github'
-          "vault auth -method=github token=#{auth_token}"
+          ::Vault.auth.github(auth_token).auth[:policies]
         when 'token'
-          "vault auth #{auth_token}"
+          ::Vault.auth.token(auth_token).auth[:policies]
+        when 'app_id'
+          ::Vault.auth.app_id(auth_app_id, auth_user_id).auth[:policies]
         else
           error! "Unknown auth method #{auth_method}"
         end

@@ -5,6 +5,7 @@ module SecretsCli
 
       def initialize(options)
         super
+        SecretsCli::Check::Secrets.new(options).call
         @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
         @secrets_file = options.secrets_file || config.secrets_file
         @secrets = File.read(secrets_file)
@@ -18,7 +19,8 @@ module SecretsCli
       private
 
       def command
-        "vault write #{secrets_full_storage_key} #{SECRETS_FIELD}=\"#{secrets}\""
+        ::Vault.logical.write(secrets_full_storage_key, SECRETS_FIELD => secrets)
+        secrets
       end
 
       def are_you_sure?

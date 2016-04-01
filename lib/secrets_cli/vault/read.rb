@@ -3,6 +3,8 @@ module SecretsCli
     class Read < SecretsCli::Vault::Base
       def initialize(options)
         super
+        options.default verbose: true
+        SecretsCli::Check::Secrets.new(options).call
         @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
       end
 
@@ -11,7 +13,8 @@ module SecretsCli
       attr_reader :secrets_storage_key
 
       def command
-        "vault read --field=#{SECRETS_FIELD} #{secrets_full_storage_key}"
+        secret = ::Vault.logical.read(secrets_full_storage_key)
+        secret.data[SECRETS_FIELD]
       end
     end
   end
