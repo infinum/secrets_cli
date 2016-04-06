@@ -15,8 +15,9 @@ module SecretsCli
         if auth_method == 'app_id'
           error! 'Missing VAULT_AUTH_APP_ID' if missing_auth_app_id?
           error! 'Missing VAULT_AUTH_USER_ID' if missing_auth_user_id?
+        else
+          error! 'Missing VAULT_AUTH_TOKEN env' if missing_auth_token?
         end
-        error! 'Missing VAULT_AUTH_TOKEN env' if missing_auth_token?
       end
 
       private
