@@ -10,7 +10,6 @@ module SecretsCli
       end
 
       def call
-        error! 'Missing vault' if TTY::Which.which('vault').nil?
         error! 'Missing VAULT_ADDR env' if ENV['VAULT_ADDR'].nil?
         error! 'Missing VAULT_AUTH_METHOD env' if missing_auth_method?
         if auth_method == 'app_id'

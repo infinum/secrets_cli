@@ -1,6 +1,5 @@
 require 'yaml'
 require 'tty-prompt'
-require 'tty-which'
 require 'open3'
 require 'singleton'
 require 'vault'
