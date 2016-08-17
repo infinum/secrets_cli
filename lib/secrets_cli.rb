@@ -20,6 +20,6 @@ require 'secrets_cli/version'
 # require 'pry'
 
 module SecretsCli
-  SECRETS_CONFIG_FILE = '.secrets'
+  SECRETS_CONFIG_FILE = '.secrets'.freeze
   SECRETS_FIELD = :secrets
 end

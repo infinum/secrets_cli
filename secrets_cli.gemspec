@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'commander'
   spec.add_runtime_dependency 'tty-prompt', '~> 0.4.0'
-  spec.add_runtime_dependency 'vault'
+  spec.add_runtime_dependency 'vault', '~> 0.5.0'
 end
