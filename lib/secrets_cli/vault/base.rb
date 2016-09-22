@@ -12,7 +12,6 @@ module SecretsCli
       def call
         options.verbose ? prompt.ok(command) : command
       rescue => exception
-        binding.pry
         error!(exception.message)
       end
 
