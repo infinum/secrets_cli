@@ -3,7 +3,7 @@ module SecretsCli
     attr_reader :environment, :verbose
 
     def initialize(options)
-      @environment = options.environment || ENV['RAILS_ENV'] || 'development'
+      @environment = options.environment || ENV['RAILS_ENV'] || ENV['NODE_ENV'] || 'development'
       @verbose = options.verbose
     end
 
