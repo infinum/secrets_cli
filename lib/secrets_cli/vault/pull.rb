@@ -14,7 +14,7 @@ module SecretsCli
 
       def command
         secrets = super
-        compare(secrets) unless options.without_prompt
+        compare(secrets) if options.check
         write(secrets)
         secrets
       end
