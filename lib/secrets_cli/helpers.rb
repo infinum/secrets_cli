@@ -25,5 +25,17 @@ module SecretsCli
     def print_verbose(message)
       puts pastel.cyan(message)
     end
+
+    def pretty_diff(diff)
+      diff.each_line do |line|
+        case line[0]
+        when '+' then prompt.ok(line, newline: false)
+        when '-' then prompt.error(line, newline: false)
+        else
+          puts line
+        end
+      end
+      puts
+    end
   end
 end
