@@ -13,7 +13,7 @@ module SecretsCli
 
       def call
         return if !options.without_prompt && !are_you_sure?
-        compare
+        compare unless options.without_prompt
         super
       end
 
