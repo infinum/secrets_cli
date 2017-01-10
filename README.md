@@ -76,19 +76,31 @@ Environment is `development` by default, but it can be overwriten by passing `--
 
     $ secrets read
 
-This will only read from vault.
+This will read development secrets from the vault.
+
+To read secrets from a different environment, use the `-e` flag:
+
+    $ secrets read -e production
 
 ### Pull
 
     $ secrets pull
 
-This will pull from vault and write to your secrets file.
+This will pull from vault and write to your secrets file. The deafult file it will pull is the development one.
+
+To pull from a different environment, also supply the `-e` flag and the `-f` flag for the file path:
+
+    $ secrets pull -e production -f config/application.production.yml
 
 ### Push
 
     $ secrets push
 
 This will push from your secrets file to vault.
+
+The same flags apply for pushing as for pulling:
+
+    $ secrets push -e production -f config/application.production.yml
 
 ## Development
 
