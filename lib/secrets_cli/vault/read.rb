@@ -3,7 +3,7 @@ module SecretsCli
     class Read < SecretsCli::Vault::Base
       def initialize(options)
         super
-        options.default verbose: true
+        options.default(verbose: !options.ci_mode)
         SecretsCli::Check::Secrets.new(options).call
         @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
       end

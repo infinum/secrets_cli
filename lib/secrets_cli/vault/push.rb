@@ -12,8 +12,8 @@ module SecretsCli
       end
 
       def call
-        return if !options.without_prompt && !are_you_sure?
-        compare if options.check
+        return if !options.ci_mode && !are_you_sure?
+        compare unless options.ci_mode
         super
       end
 

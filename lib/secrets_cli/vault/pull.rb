@@ -14,7 +14,7 @@ module SecretsCli
 
       def command
         secrets = super
-        compare(secrets) if options.check
+        compare(secrets) unless options.ci_mode
         write(secrets)
         secrets
       end
