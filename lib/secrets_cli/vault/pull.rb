@@ -29,7 +29,12 @@ module SecretsCli
 
       def write(secrets)
         print_verbose("Writing to #{secrets_file}")
-        File.open(File.join(secrets_dir, secrets_file), 'w') { |file| file.write(secrets) }
+        File.open(secrets_path, 'w') { |file| file.write(secrets) }
+        File.chmod(0600, secrets_path)
+      end
+
+      def secrets_path
+        @secrets_path ||= File.join(secrets_dir, secrets_file)
       end
     end
   end
