@@ -32,10 +32,12 @@ For `vault` itself:
 
 For `secrets_cli`:
 
-    VAULT_AUTH_METHOD - this is auth method ('github', 'token' or 'app_id' supported for now)
+    VAULT_AUTH_METHOD - this is auth method ('github', 'token', 'app_id' and 'approle' supported for now)
     VAULT_AUTH_TOKEN - this is vault auth token
-    VAULT_AUTH_APP_ID - machine app_id
-    VAULT_AUTH_USER_ID - machine user_id which matches app_id
+    VAULT_AUTH_APP_ID - machine app_id (for app_id auth)
+    VAULT_AUTH_USER_ID - machine user_id which matches app_id (for app_id auth)
+    VAULT_AUTH_ROLE_id - machine role_id (for approle auth)
+    VAULT_AUTH_SECRET_ID - machine secret_id which matches role_id (for approle auth)
 
 For github token you only need `read:org` permissions.
 
