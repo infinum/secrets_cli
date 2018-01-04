@@ -3,15 +3,17 @@ module SecretsCli
     class Secrets
       include SecretsCli::Helpers
 
+      attr_reader :action
       attr_reader :options
 
-      def initialize(options)
+      def initialize(action, options)
+        @action = action
         @options = options
       end
 
       def call
         error! 'Missing .secrets' unless File.exist?('.secrets')
-        error! 'Missing secrets_file' if missing_secret_file?
+        error! 'Missing secrets_file' if require_secrets_file? && missing_secret_file?
         error! 'Missing secrets_storage_key' if missing_secret_storage_key?
       end
 
@@ -19,6 +21,10 @@ module SecretsCli
 
       def missing_secret_file?
         options.secrets_file.nil? && config.secrets_file.nil?
+      end
+
+      def require_secrets_file?
+        action != :read
       end
 
       def missing_secret_storage_key?

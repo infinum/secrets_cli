@@ -5,7 +5,7 @@ module SecretsCli
 
       def initialize(options)
         super
-        SecretsCli::Check::Secrets.new(options).call
+        SecretsCli::Check::Secrets.new(:pull, options).call
         @secrets_file = options.secrets_file || config.secrets_file
         @secrets_dir = options.secrets_dir || '.'
       end
