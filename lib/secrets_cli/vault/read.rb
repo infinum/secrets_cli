@@ -4,7 +4,7 @@ module SecretsCli
       def initialize(options)
         super
         options.default(verbose: !options.ci_mode)
-        SecretsCli::Check::Secrets.new(options).call
+        SecretsCli::Check::Secrets.new(:read, options).call
         @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
       end
 
