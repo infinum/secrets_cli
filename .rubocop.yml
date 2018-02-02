@@ -1,0 +1,48 @@
+require: rubocop-rspec
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - 'spec/support/dox/**/*'
+
+Documentation:
+  Enabled: False
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+WordArray:
+  Enabled: False
+
+SymbolArray:
+  Enabled: False
+
+AbcSize:
+  Max: 20
+
+Rails:
+  Enabled: true
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+    - 'lib/tasks/*.rake'
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
