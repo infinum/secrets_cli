@@ -14,17 +14,9 @@ module SecretsCli
 
       def command
         secrets = super
-        compare(secrets) unless options.ci_mode
+        compare(secrets_file, secrets) unless options.ci_mode
         write(secrets)
         secrets
-      end
-
-      def compare(secrets)
-        diff = TTY::File.diff(secrets_file, secrets, verbose: false)
-        return if diff == ''
-        prompt.ok("There are some differences between #{secrets_file} and vault:")
-        pretty_diff(diff)
-        exit 0 unless prompt.yes?("Are you sure you want to override #{secrets_file}?")
       end
 
       def write(secrets)
