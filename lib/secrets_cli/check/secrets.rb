@@ -24,7 +24,7 @@ module SecretsCli
       end
 
       def require_secrets_file?
-        action != :read
+        ![:read, :edit].include?(action)
       end
 
       def missing_secret_storage_key?

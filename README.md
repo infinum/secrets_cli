@@ -90,6 +90,16 @@ To read secrets from a different environment, use the `-e` flag:
 
     $ secrets read -e production
 
+### Edit
+
+    $ secrets edit
+
+This will allow you to edit secrets on the fly. You choose which editor to use by defining an `$EDITOR` variable, otherwise it will use one of these: `mate -w`, `vim`, `vi`, `emacs`, `nano`, `pico`
+
+The same flags apply for editing as for reading:
+
+    $ EDIOTR='atom -w' secrets edit -e production
+
 ### Pull
 
     $ secrets pull
