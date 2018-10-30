@@ -29,6 +29,7 @@ The following environment variables need to be set:
 For `vault` itself:
 
     VAULT_ADDR - this is an address to your vault server
+    VAULT_CACERT - if you have a self issued certificate, point this environment variable to the location of the root CA file
 
 For `secrets_cli`:
 
