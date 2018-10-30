@@ -99,7 +99,7 @@ This will allow you to edit secrets on the fly. You choose which editor to use b
 
 The same flags apply for editing as for reading:
 
-    $ EDIOTR='atom -w' secrets edit -e production
+    $ EDITOR='atom -w' secrets edit -e production
 
 ### Pull
 
