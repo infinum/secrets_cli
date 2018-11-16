@@ -111,6 +111,8 @@ To pull from a different environment, also supply the `-e` flag and the `-f` fla
 
     $ secrets pull -e production -f config/application.production.yml
 
+You can also supply the `--ci_mode` or `-y` flag to disable prompts and outputs.
+
 ### Push
 
     $ secrets push
