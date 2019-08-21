@@ -12,6 +12,7 @@ module SecretsCli
       def call
         options.verbose ? prompt.ok(command) : command
       rescue => exception
+        # require 'pry'; binding.pry
         error!(exception.message)
       end
 
@@ -21,8 +22,12 @@ module SecretsCli
         raise NotImplementedError
       end
 
+      def vault
+        @vault ||= ::Vault::Client.new(address: config.vault_addr)
+      end
+
       def secrets_full_storage_key
-        File.join(secrets_storage_key, config.environment)
+        File.join(secrets_storage_key, config.environment.to_s)
       end
 
       def compare(first, second)

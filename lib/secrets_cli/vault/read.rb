@@ -13,8 +13,8 @@ module SecretsCli
       attr_reader :secrets_storage_key
 
       def command
-        secrets = ::Vault.logical.read(secrets_full_storage_key)
-        error!("There are no secrets in #{secrets_full_storage_key}") if secrets.nil?
+        secrets = vault.logical.read(secrets_full_storage_key)
+        error!("There are no secrets in #{config.vault_addr} #{secrets_full_storage_key}") if secrets.nil?
         secrets.data[SECRETS_FIELD]
       end
     end

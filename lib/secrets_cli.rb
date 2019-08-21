@@ -11,6 +11,7 @@ require 'secrets_cli/check/secrets'
 require 'secrets_cli/check/vault'
 require 'secrets_cli/prompts/secrets_file'
 require 'secrets_cli/prompts/secrets_storage_key'
+require 'secrets_cli/prompts/vault_addr'
 require 'secrets_cli/vault/base'
 require 'secrets_cli/vault/auth'
 require 'secrets_cli/vault/list'
@@ -19,6 +20,8 @@ require 'secrets_cli/vault/pull'
 require 'secrets_cli/vault/push'
 require 'secrets_cli/vault/edit'
 require 'secrets_cli/version'
+
+# require 'pry'
 
 module SecretsCli
   SECRETS_CONFIG_FILE = '.secrets'.freeze

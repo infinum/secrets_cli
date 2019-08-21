@@ -10,7 +10,7 @@ module SecretsCli
       end
 
       def call
-        error! 'Missing VAULT_ADDR env' if ENV['VAULT_ADDR'].nil?
+        error! 'Missing vault_addr' if config.vault_addr.nil?
         error! 'Missing VAULT_AUTH_METHOD env' if missing_auth_method?
         case auth_method
         when 'app_id'

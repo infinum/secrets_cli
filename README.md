@@ -28,7 +28,7 @@ The following environment variables need to be set:
 
 For `vault` itself:
 
-    VAULT_ADDR - this is an address to your vault server
+    VAULT_ADDR   - address to your vault server (can also be set through config)
     VAULT_CACERT - if you have a self issued certificate, point this environment variable to the location of the root CA file
 
 For `secrets_cli`:
@@ -57,8 +57,10 @@ supply the config through options.
 Example of the `.secrets`:
 
     ---
-    :secrets_file: config/application.yml   # file where your secrets are kept, depending on your environment gem (figaro, dotenv, etc)
-    :secrets_storage_key: rails/my_project/ # vault 'storage_key' where your secrets will be kept.
+    :secrets_file: config/application.yml   # Required; file where your secrets are kept, depending on your environment gem (figaro, dotenv, etc)
+    :secrets_storage_key: rails/my_project/ # Required; vault 'storage_key' where your secrets will be kept.
+    development:                            # Any configuration can be nested under environment
+      :vault_addr: https://myvault.com      # Optional; vault url (default: VAULT_ADDR environment variable) 
 
 ### Policies
 

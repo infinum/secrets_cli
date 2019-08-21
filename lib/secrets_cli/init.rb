@@ -17,10 +17,11 @@ module SecretsCli
     private
 
     def config
-      {
-        secrets_file: secrets_file,
-        secrets_storage_key: secrets_storage_key
-      }
+      {}.tap do |hash|
+        hash[:secrets_file] = secrets_file
+        hash[:secrets_storage_key] = secrets_storage_key
+        hash[:vault_addr] = vault_addr if vault_addr
+      end
     end
 
     def secrets_file
@@ -31,6 +32,10 @@ module SecretsCli
       storage_key = options.secrets_storage_key || SecretsCli::Prompts::SecretsStorageKey.new.call
       storage_key << '/' unless storage_key.end_with?('/')
       storage_key
+    end
+
+    def vault_addr
+      @vault_addr ||= options.vault_addr || SecretsCli::Prompts::VaultAddr.new.call
     end
   end
 end

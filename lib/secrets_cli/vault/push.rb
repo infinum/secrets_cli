@@ -20,22 +20,22 @@ module SecretsCli
       private
 
       def command
-        ::Vault.logical.write(secrets_full_storage_key, SECRETS_FIELD => secrets)
+        vault.logical.write(secrets_full_storage_key, SECRETS_FIELD => secrets)
         secrets
       end
 
       def compare
-        secrets = ::Vault.logical.read(secrets_full_storage_key)
+        secrets = vault.logical.read(secrets_full_storage_key)
         secrets = secrets.nil? ? ' ' : secrets.data[SECRETS_FIELD]
         diff = TTY::File.diff(secrets, secrets_file, verbose: false)
         return if diff == ''
         prompt.ok("There are some differences between #{secrets_file} and vault:")
         pretty_diff(diff)
-        exit 0 unless prompt.yes?("Are you sure you want to override #{secrets_full_storage_key}?")
+        exit 0 unless prompt.yes?("Are you sure you want to override #{config.vault_addr} #{secrets_full_storage_key}?")
       end
 
       def are_you_sure?
-        prompt.yes?("Are you sure you want to write #{secrets_file} to #{secrets_full_storage_key}")
+        prompt.yes?("Are you sure you want to write #{secrets_file} to #{config.vault_addr} #{secrets_full_storage_key}")
       end
     end
   end

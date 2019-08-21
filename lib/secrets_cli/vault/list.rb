@@ -13,7 +13,7 @@ module SecretsCli
       attr_reader :secrets_storage_key
 
       def command
-        ::Vault.logical.list(secrets_storage_key).join("\n")
+        vault.logical.list(secrets_storage_key).join("\n")
       end
     end
   end
