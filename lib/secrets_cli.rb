@@ -19,6 +19,7 @@ require 'secrets_cli/vault/read'
 require 'secrets_cli/vault/pull'
 require 'secrets_cli/vault/push'
 require 'secrets_cli/vault/edit'
+require 'secrets_cli/vault/policies'
 require 'secrets_cli/version'
 
 # require 'pry'

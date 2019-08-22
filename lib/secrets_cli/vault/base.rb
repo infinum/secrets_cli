@@ -10,7 +10,7 @@ module SecretsCli
       end
 
       def call
-        options.verbose ? prompt.ok(command) : command
+        options.verbose ? prompt.ok(command).first : command
       rescue => exception
         # require 'pry'; binding.pry
         error!(exception.message)
@@ -23,7 +23,11 @@ module SecretsCli
       end
 
       def vault
-        @vault ||= ::Vault::Client.new(address: config.vault_addr)
+        @vault ||=
+          ::Vault::Client.new(
+            address: config.vault_addr,
+            token: SecretsCli::Vault::Auth.new(options).call.client_token
+          )
       end
 
       def secrets_full_storage_key

@@ -21,16 +21,16 @@ module SecretsCli
       def command
         case auth_method
         when 'github'
-          vault.auth.github(auth_token)
+          ::Vault.auth.github(auth_token)
         when 'token'
-          vault.auth.token(auth_token)
+          ::Vault.auth.token(auth_token)
         when 'app_id'
-          vault.auth.app_id(auth_app_id, auth_user_id)
+          ::Vault.auth.app_id(auth_app_id, auth_user_id)
         when 'approle'
-          vault.auth.approle(auth_role_id, auth_secret_id)
+          ::Vault.auth.approle(auth_role_id, auth_secret_id)
         else
           error! "Unknown auth method #{auth_method}"
-        end.auth.policies
+        end.auth
       end
     end
   end
