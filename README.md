@@ -6,6 +6,23 @@ This is a CLI for easier use of [vault](https://www.vaultproject.io/)
 
 There is also a mina plugin [mina-secrets](https://github.com/infinum/mina-secrets)
 
+## Table of contents
+
+1. [Installation](#installation)
+1. [Prerequisites](#prerequisites)
+1. [Usage](#usage)
+   1. [Init](#init)
+   1. [Policies](#policies)
+   1. [Environments](#environments)
+   1. [storage_keys and environments](#storage_keys-and-environments)
+   1. [Read](#read)
+   1. [Edit](#edit)
+   1. [Pull](#pull)
+   1. [Push](#push)
+1. [Development](#development)
+1. [Contributing](#contributing)
+1. [License](#license)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -68,7 +85,7 @@ Example of the `.secrets`:
 
 To get all the policies your auth grants please use this command.
 
-### Environemtns
+### Environments
 
     $ secrets list
 
