@@ -11,8 +11,9 @@ module SecretsCli
         @secrets = File.read(secrets_file)
       end
 
-      def call
+      def call(verbose: false)
         return if !options.ci_mode && !are_you_sure?
+
         compare unless options.ci_mode
         super
       end
@@ -20,12 +21,12 @@ module SecretsCli
       private
 
       def command
-        vault.logical.write(secrets_full_storage_key, SECRETS_FIELD => secrets)
+        backend.write(secrets_full_storage_key, SECRETS_FIELD => secrets)
         secrets
       end
 
       def compare
-        secrets = vault.logical.read(secrets_full_storage_key)
+        secrets = backend.read(secrets_full_storage_key)
         secrets = secrets.nil? ? ' ' : secrets.data[SECRETS_FIELD]
         diff = TTY::File.diff(secrets, secrets_file, verbose: false)
         return if diff == ''

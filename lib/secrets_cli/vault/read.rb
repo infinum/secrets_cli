@@ -3,7 +3,6 @@ module SecretsCli
     class Read < SecretsCli::Vault::Base
       def initialize(options)
         super
-        options.default(verbose: !options.ci_mode)
         SecretsCli::Check::Secrets.new(:read, options).call
         @secrets_storage_key = options.secrets_storage_key || config.secrets_storage_key
       end
@@ -13,7 +12,7 @@ module SecretsCli
       attr_reader :secrets_storage_key
 
       def command
-        secrets = vault.logical.read(secrets_full_storage_key)
+        secrets = backend.read(secrets_full_storage_key)
         error!("There are no secrets in #{config.vault_addr} #{secrets_full_storage_key}") if secrets.nil?
         secrets.data[SECRETS_FIELD]
       end

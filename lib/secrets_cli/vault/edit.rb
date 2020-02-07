@@ -12,10 +12,10 @@ module SecretsCli
       attr_reader :secrets_storage_key
 
       def command
-        secrets = vault.logical.read(secrets_full_storage_key)
+        secrets = backend.read(secrets_full_storage_key)
         new_secrets = ask_editor(content(secrets))
         compare(content(secrets), new_secrets)
-        vault.logical.write(secrets_full_storage_key, SECRETS_FIELD => new_secrets)
+        backend.write(secrets_full_storage_key, SECRETS_FIELD => new_secrets)
         new_secrets
       end
 

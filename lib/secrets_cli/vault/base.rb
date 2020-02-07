@@ -9,8 +9,8 @@ module SecretsCli
         @options = options
       end
 
-      def call
-        options.verbose ? prompt.ok(command).first : command
+      def call(verbose: false)
+        verbose ? prompt.ok(command).first : command
       rescue => exception
         # require 'pry'; binding.pry
         error!(exception.message)
@@ -26,8 +26,16 @@ module SecretsCli
         @vault ||=
           ::Vault::Client.new(
             address: config.vault_addr,
-            token: SecretsCli::Vault::Auth.new(options).call.client_token
+            token: SecretsCli::Vault::Auth.new(options).call
           )
+      end
+
+      def backend
+        @backend ||= 
+          case config.backend
+          when 'logical' then SecretsCli::Backend::Logical.new(vault)
+          when 'kv' then SecretsCli::Backend::KV.new(vault, config.mount, options.kv_version)
+          end
       end
 
       def secrets_full_storage_key
@@ -37,6 +45,7 @@ module SecretsCli
       def compare(first, second)
         diff = TTY::File.diff(first, second, verbose: false)
         return if diff == ''
+
         prompt.ok('There are some differences:')
         pretty_diff(diff)
         exit 0 unless prompt.yes?('Are you sure you want to override?')

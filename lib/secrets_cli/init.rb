@@ -20,7 +20,8 @@ module SecretsCli
       {}.tap do |hash|
         hash[:secrets_file] = secrets_file
         hash[:secrets_storage_key] = secrets_storage_key
-        hash[:vault_addr] = vault_addr if vault_addr
+        hash[:vault_addr] = vault_addr
+        hash[:backend] = backend
       end
     end
 
@@ -36,6 +37,10 @@ module SecretsCli
 
     def vault_addr
       @vault_addr ||= options.vault_addr || SecretsCli::Prompts::VaultAddr.new.call
+    end
+
+    def backend 
+      @backend ||= options.backend || SecretsCli::Prompts::Backend.new.call
     end
   end
 end

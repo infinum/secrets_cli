@@ -1,10 +1,10 @@
 module SecretsCli
   module Prompts
-    class VaultAddr
+    class Backend
       include SecretsCli::Helpers
 
       def call
-        prompt.ask('What is the vault address? (https://vault.example.com:8200)')
+        prompt.ask('What is the vault backend? (logical or kv)', default: 'logical')
       end
     end
   end

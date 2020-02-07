@@ -24,6 +24,14 @@ module SecretsCli
       fetch(:vault_addr) || ENV['VAULT_ADDR']
     end
 
+    def backend
+      fetch(:backend) || 'logical'
+    end
+
+    def mount
+      fetch(:mount)
+    end
+
     def self.write(config)
       File.open(SECRETS_CONFIG_FILE, 'w') { |file| file.write(config.to_yaml) }
     end
