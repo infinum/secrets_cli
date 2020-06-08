@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['d4be4st@gmail.com']
 
   spec.summary       = 'This is a CLI for easier use of https://www.vaultproject.io/'
-  spec.homepage      = 'http://github.com/infinum.secrets_cli'
+  spec.homepage      = 'http://github.com/infinum/secrets_cli'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
