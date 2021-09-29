@@ -10,7 +10,7 @@ module SecretsCli
       end
 
       def call
-        options.verbose ? prompt.ok(command).first : command
+        options.verbose && !self.is_a?(SecretsCli::Vault::Auth) ? prompt.ok(command).first : command
       rescue => exception
         # require 'pry'; binding.pry
         error!(exception.message)
